@@ -143,7 +143,7 @@ const App = () => {
   return (
     <div className="p-4 pt-[100px] pb-[80px] max-w-md mx-auto text-[var(--text)]">
       <h2 className="fixed top-0 w-full bg-white text-2xl font-bold p-4 z-10 border-b border-gray-300">
-        കളം | 📋 Outreach Activities
+        കളം | 📋 GSheet Checklist
       </h2>
 
       {loading ? (

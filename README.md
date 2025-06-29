@@ -1,69 +1,92 @@
-# React + TypeScript + Vite
+# കളം | 📋 Google Sheet Checklist
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**കളം** (pronounced *kalam*) is a sleek web app for managing checklists directly from Google Sheets. It connects to a shared spreadsheet and provides a beautiful, collapsible interface for activity tracking — ideal for outreach teams, clubs, or any collaborative workflows.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- ✅ Interactive checklist UI synced with Google Sheets
+- 🔒 Role-based edit access (only editable rows can be changed)
+  - Add `[!]` to the name of acitivity for it to uneditable
+- 📁 Collapsible activity groups for better UX
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔧 Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 1. Clone this repo
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/your-username/kalam-checklist.git
+cd kalam-checklist
+````
+
+### 2. Install dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Set up your `.env`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env` file with the following variables (See example.env):
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+VITE_GOOGLE_API_KEY=your-google-api-key
+VITE_SPREADSHEET_ID=your-google-sheet-id
 ```
+
+* The spreadsheet should be shared with **"Anyone with the link"** or to the required users.
+* Make sure to publish your [OAuth consent screen](https://console.cloud.google.com/apis/credentials/consent).
+
+---
+
+## 🔌 Google Sheet Format
+
+Your sheet should be named `Outreach` (Can be changed in `app.tsx`) and look like:
+
+|      | Task 1           | Task 2    | ... |
+| ---------- | ---------------- | --------- | --- |
+| Activity A    | TRUE             | FALSE     |     |
+| Activity B    | FALSE            | TRUE      |     |
+| ...        | ...              | ...       |     |
+
+---
+
+## 🚀 Run Dev Server
+
+```bash
+npm run dev
+```
+
+The app will open on `http://localhost:5173`.
+
+---
+
+## 🧠 Tech Stack
+
+* React + TypeScript
+* Google Sheets API v4
+* Google OAuth2 (token-based login)
+* Tailwind CSS (for styling)
+* Lucide React (icons)
+
+---
+
+## 📦 Deployment
+
+You can deploy to:
+
+* **Vercel** (auto-detects Vite)
+* **Netlify**
+* **Firebase Hosting**
+
+Ensure your `.env` vars are set in the respective dashboard.
+
+---
+
+## 📄 License
+
+MIT License. Feel free to fork, remix, and use.
