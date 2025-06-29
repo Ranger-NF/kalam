@@ -28,7 +28,6 @@ declare global {
 }
 
 const App = () => {
-  const [token, setToken] = useState<string | null>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -56,7 +55,6 @@ const App = () => {
         callback: (resp: any) => {
           if (resp.access_token) {
             localStorage.setItem("gapi_token", resp.access_token);
-            setToken(resp.access_token);
             fetchActivities();
           } else {
             alert("Token error");
@@ -67,7 +65,6 @@ const App = () => {
       const token = localStorage.getItem("gapi_token");
 
       if (token) {
-        setToken(token);
         fetchActivities();
 
         // This ensures we refresh silently in the background
